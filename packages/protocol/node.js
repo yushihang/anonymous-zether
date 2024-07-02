@@ -10,14 +10,14 @@ function capitalizeFirstLetter(str) {
 }
 
 console.log("name = " + name);
+console.log("__dirname = " + __dirname);
 
 const Web3 = require("web3");
 const web3 = new Web3("http://localhost:8545");
 const provider = new Web3.providers.WebsocketProvider("ws://localhost:8545");
 
 const path = require("path");
-__dirname =
-  "/Users/yushihang/Documents/HSBC/web3/anonymous-zether/packages/protocol";
+
 const Client = require(path.join(__dirname, "../anonymous.js/src/client.js"));
 
 const contract = require("@truffle/contract");
