@@ -51,14 +51,11 @@ let miner;
   await sleep(1000);
   await CashToken.deployed();
   await sleep(1000);
-  CashToken.at(CashToken.address).then((result) => {
-    cash = result;
-  });
-  await sleep(1000);
+  cash = await CashToken.at(CashToken.address);
 
-  web3.eth.getAccounts().then((accounts) => {
-    home = accounts[0];
-  });
+  accounts = await web3.eth.getAccounts();
+  home = accounts[0];
+
   await sleep(1000);
   cash.mint(home, 1000, { from: home });
   await sleep(1000);
@@ -79,6 +76,7 @@ let miner;
     miner.register(),
   ]);
 
+  await sleep(5000);
   await alice.deposit(100);
   assert(alice.account.balance() === 100, "Alice deposit failed");
   await alice.withdraw(10);

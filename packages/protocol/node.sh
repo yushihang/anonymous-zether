@@ -20,7 +20,7 @@ sleep 1
 yarn
 
 ttab 'tabset -a 'ganache' -c purple; ganache-cli --gasPrice 0 -k berlin'
-sleep 2
+sleep 5
 
 ttab 'truffle migrate; exit'
 sleep 5
