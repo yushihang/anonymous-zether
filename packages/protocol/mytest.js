@@ -104,7 +104,7 @@ let miner;
   assert(miner.account.balance() == fee, "Fees failed");
 
   console.log("==== transfer to Bob 2nd ====");
-  await alice.transfer("Bob", 10, ["Carol", "Dave"], "Miner");
+  await alice.transfer("Bob", 10);
   await sleep(2000);
   assert(alice.account.balance() === 70, "Alice transfer failed");
   console.log("bob.account.balance()", bob.account.balance());

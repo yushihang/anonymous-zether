@@ -304,7 +304,8 @@ class Client {
           this.transfer(name, value, decoys, beneficiary)
         );
       }
-      if (state.nonceUsed) {
+      let a = 0;
+      if (state.nonceUsed /* && a*/) {
         console.log(
           "Your transfer has been queued 2. Please wait " +
             seconds +
@@ -312,7 +313,6 @@ class Client {
             plural +
             ", until the next epoch..."
         );
-        wait = 0; //test
         return sleep(wait).then(() =>
           this.transfer(name, value, decoys, beneficiary)
         );
@@ -329,7 +329,10 @@ class Client {
           Math.ceil(estimate(size, true) / 1000) +
           " seconds."
         );
-      if (estimated > wait) {
+
+      if (estimated > wait /* && a*/) {
+        console.log("estimated:", estimated);
+        console.log("wait:", wait);
         console.log(
           wait < 3100
             ? "Initiating transfer."
