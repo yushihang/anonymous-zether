@@ -23,7 +23,7 @@ ttab 'tabset -a 'ganache' -c purple; ganache-cli --gasPrice 0 -k berlin'
 sleep 2
 
 ttab 'truffle migrate; exit'
-sleep 2
+sleep 5
 
 names=("alice" "bob" "carol" "dave" "miner")
 colors=("red" "blue" "yellow" "green" "orange")
