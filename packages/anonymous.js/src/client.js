@@ -294,7 +294,7 @@ class Client {
       const plural = seconds === 1 ? "" : "s";
       if (value > state.available) {
         console.log(
-          "Your transfer has been queued. Please wait " +
+          "Your transfer has been queued 1. Please wait " +
             seconds +
             " second" +
             plural +
@@ -306,12 +306,13 @@ class Client {
       }
       if (state.nonceUsed) {
         console.log(
-          "Your transfer has been queued. Please wait " +
+          "Your transfer has been queued 2. Please wait " +
             seconds +
             " second" +
             plural +
             ", until the next epoch..."
         );
+        wait = 0; //test
         return sleep(wait).then(() =>
           this.transfer(name, value, decoys, beneficiary)
         );
@@ -332,7 +333,7 @@ class Client {
         console.log(
           wait < 3100
             ? "Initiating transfer."
-            : "Your transfer has been queued. Please wait " +
+            : "Your transfer has been queued 3. Please wait " +
                 seconds +
                 " second" +
                 plural +

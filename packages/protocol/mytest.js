@@ -78,7 +78,7 @@ let miner;
     dave.register(),
     miner.register(),
   ]);
-  console.log("**********1");
+
   await alice.deposit(100);
   assert(alice.account.balance() === 100, "Alice deposit failed");
   await alice.withdraw(10);
@@ -93,13 +93,20 @@ let miner;
     Object.keys(alice.friends.show()).length == 4,
     "Alice add friend failed"
   );
-
+  console.log("==== transfer to Bob 1st ====");
   await alice.transfer("Bob", 10, ["Carol", "Dave"], "Miner");
   await sleep(2000);
   assert(bob.account.balance() === 10, "Bob received transfer failed");
   assert(alice.account.balance() === 80, "Alice transfer failed");
 
   const fee = await zsc.fee.call();
-  console.log("miner.account.balance():", fee);
-  assert.equal(miner.account.balance(), fee, "Fees failed");
+  console.log("miner.account.balance():", miner.account.balance());
+  assert(miner.account.balance() == fee, "Fees failed");
+
+  console.log("==== transfer to Bob 2nd ====");
+  await alice.transfer("Bob", 10, ["Carol", "Dave"], "Miner");
+  await sleep(2000);
+  assert(alice.account.balance() === 70, "Alice transfer failed");
+  console.log("bob.account.balance()", bob.account.balance());
+  //assert(carol.account.balance() === 10, "Carol received transfer failed");
 })();
